@@ -1,19 +1,23 @@
 package ie.tudublin;
 
 public class Follow {
-    private String word;
+    private String theWord;
     private int wordCount;
 
 
     
+    public String toString(){
+        return theWord + "{" + wordCount + "}";
+    }
+
     public String getWord() {
-        return word;
+        return theWord;
     }
 
 
 
     public void setWord(String word) {
-        this.word = word;
+        this.theWord = word;
     }
 
 
@@ -31,7 +35,7 @@ public class Follow {
 
 
     public Follow(String word, int wordCount) {
-        this.word = word;
+        this.theWord = word;
         this.wordCount = wordCount;
     }
 
