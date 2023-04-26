@@ -6,7 +6,8 @@ import processing.core.PApplet;
 
 public class DANI extends PApplet {
 
-	
+	ArrayList<Word> model;	
+	String[] wD;
 
 	public void loadFile(){
 
@@ -15,21 +16,22 @@ public class DANI extends PApplet {
 		String w = " ";
 		
 		for(String line: lines){
-			w += split(line, ' ');;
+			w += ' ' + line;
 		}
 		
 		System.out.println(w);
 
+		w = w.replaceAll("[^\\w\\s]",""); // Remove punction characters
+		w = w.toLowerCase(); // Convert a string to lower case 
+		wD = split(w, ' ');
 
-		// loadStrings("filename.txt"); // Load a text file into a String array
-		// split(line, ' '); // Split a string into an array of words
-		w.replaceAll("[^\\w\\s]",""); // Remove punction characters
-		// s.toLowerCase(); // Convert a string to lower case 
+		for(String word: wD){
+			System.out.println(word);
+		}
 	}
 
 	public void settings() {
 		size(1000, 1000);
-		loadFile();
 		//fullScreen(SPAN);
 	}
 
@@ -42,18 +44,25 @@ public class DANI extends PApplet {
 
 	public void setup() {
 		colorMode(HSB);
-
+		loadFile();
+		writeSonnet();
+		printModel();
        
 	}
 
-	public void findStr(String[] sonnet){
-
+	public int findWord(String wD){
+		for(int i = 0; i < model.size(); i++){
+			if(model.get(i).getTheNewWord().equals(wD)){	
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public void keyPressed() {
 		if(keyPressed){
 			if(key == ' '){
-				
+				writeSonnet();
 			}
 
 		}
@@ -69,5 +78,11 @@ public class DANI extends PApplet {
 		textSize(20);
         textAlign(CENTER, CENTER);
         
+	}
+
+	public void printModel(){
+	 	for(Word w: model){
+			System.out.println(w.toString());
+		}
 	}
 }
