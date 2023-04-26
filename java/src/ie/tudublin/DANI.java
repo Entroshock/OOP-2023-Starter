@@ -7,6 +7,7 @@ import processing.core.PApplet;
 public class DANI extends PApplet {
 
 	ArrayList<Word> model;	
+	StringBuilder sb;
 
 	public void loadFile(){
 
@@ -17,6 +18,42 @@ public class DANI extends PApplet {
 			for(int j = 0; j < wD.length; j++){
 				wD[j] = wD[j].replaceAll("[^\\w\\s]","");
 				wD[j]= wD[j].toLowerCase();
+
+
+				boolean followedWord;
+				if(j+1 == wD.length)
+				{
+					followedWord = true;
+				}
+				else
+				{
+					followedWord = false;
+				}
+				
+				if(!followedWord)
+				{
+					wD[j+1] = wD[j+1].replaceAll("[^\\w\\s]", "");
+					wD[j+1] = wD[j+1].toLowerCase();
+				}
+
+				int result = findWord(wD[j]);
+				Word word;
+				
+				if(result == -1)
+				{
+					word = new Word(wD[j]);
+					model.add(word);
+				}
+				else
+				{
+					word = model.get(result);
+				}
+
+			
+				if(!followedWord)
+				{
+
+				}
 			}
 		}
 	}
@@ -30,15 +67,21 @@ public class DANI extends PApplet {
 
     public String[] writeSonnet()
     {
-        return null;
+		sonnet = new String[14];
+		for(int i = 0; i < 14; i++){
+			
+		}
+
     }
 
 	public void setup() {
 		colorMode(HSB);
+		model = new ArrayList<Word>();
 		loadFile();
-		writeSonnet();
 		printModel();
-       
+		writeSonnet();
+		printSonnet();
+		
 	}
 
 	public int findWord(String wD){
@@ -55,7 +98,6 @@ public class DANI extends PApplet {
 			if(key == ' '){
 				writeSonnet();
 			}
-
 		}
 	}
 
@@ -74,6 +116,12 @@ public class DANI extends PApplet {
 	public void printModel(){
 	 	for(Word w: model){
 			System.out.println(w.toString());
+		}
+	}
+
+	public void printSonnet(){
+		for(String s: sonnet){
+			System.out.println(s);
 		}
 	}
 }

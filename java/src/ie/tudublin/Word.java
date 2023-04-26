@@ -28,9 +28,8 @@ public class Word {
     }
 
 
-    public Word(String theNewWord, ArrayList<Follow> w) {
+    public Word(String theNewWord) {
         this.theNewWord = theNewWord;
-        this.w = w;
     }
 
     public int findFollow(String theNewWord){
@@ -49,7 +48,7 @@ public class Word {
         for (Follow follow : w) {
             result += follow.toString() + " ";
         }
-        return result.trim();
+        return result;
     }
 
 }
