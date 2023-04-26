@@ -33,6 +33,15 @@ public class Word {
         this.w = w;
     }
 
+    public int findFollow(String theNewWord){
+        for(Follow foll: w){
+            if(foll.getWord().equals(theNewWord)){
+                return w.indexOf(foll);
+            }
+        }
+        return -1;
+    }
+
 
     @Override
     public String toString(){
