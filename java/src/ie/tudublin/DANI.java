@@ -7,26 +7,17 @@ import processing.core.PApplet;
 public class DANI extends PApplet {
 
 	ArrayList<Word> model;	
-	String[] wD;
 
 	public void loadFile(){
 
 
 		String [] lines = loadStrings("small.txt");
-		String w = " ";
-		
-		for(String line: lines){
-			w += ' ' + line;
-		}
-		
-		System.out.println(w);
-
-		w = w.replaceAll("[^\\w\\s]",""); // Remove punction characters
-		w = w.toLowerCase(); // Convert a string to lower case 
-		wD = split(w, ' ');
-
-		for(String word: wD){
-			System.out.println(word);
+		for(int i = 0; i < lines.length; i++){
+			String[] wD = split(lines[i], " ");
+			for(int j = 0; j < wD.length; j++){
+				wD[j] = wD[j].replaceAll("[^\\w\\s]","");
+				wD[j]= wD[j].toLowerCase();
+			}
 		}
 	}
 

@@ -38,10 +38,5 @@ public class Follow {
         this.wordCount = wordCount;
     }
     
-    public void findFollow(String theWord){
-        
-    }
-
-
     
 }
